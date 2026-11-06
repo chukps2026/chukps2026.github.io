@@ -196,6 +196,39 @@ ol.steps span{color:var(--ink-soft)}
 .entries{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 @media (max-width:760px){.entries{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media (max-width:460px){.entries{grid-template-columns:1fr!important}}
+.skip{position:absolute;left:max(16px,env(safe-area-inset-left,0px));top:calc(env(safe-area-inset-top,0px) + 8px);z-index:20;background:var(--yamabuki);border:var(--line);border-radius:999px;padding:4px 16px;text-decoration:none;transform:translateY(-200%)}
+.skip:focus{transform:none}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+main:focus,main:focus-visible,h1[tabindex]:focus,h1[tabindex]:focus-visible{outline:none}
+.help .btn{justify-self:start}
+:focus-visible{outline:3px dashed var(--ink);outline-offset:3px}
+details.fold>summary:focus-visible{outline-offset:-6px}
+.zones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:640px){.zones{grid-template-columns:1fr}}
+.zone{border:var(--line);border-radius:var(--r-lg);display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;align-items:center;padding:14px 20px;text-decoration:none}
+.zone-parent{background:var(--wakatake-tint)}
+.zone-student{background:var(--mizu-tint)}
+.zone:hover{background:var(--paper)}
+.zart svg{width:120px;height:90px}
+.ztext{display:grid;gap:2px}
+.ztext b{font-weight:400;font-size:21px}
+.ztext span{font-size:14px;color:var(--ink-soft)}
+.helpmini{display:grid;gap:4px;padding:16px 20px;background:var(--coral-tint);font-size:14.5px}
+.helpmini b{font-weight:400;font-size:17px}
+.vgroups{display:grid;gap:26px}
+.vgroup{display:grid;gap:12px}
+.vgroup h2{font-size:20px;display:flex;align-items:center;gap:10px}
+.vgroup h2::before{content:"";width:16px;height:16px;border:3px solid var(--ink);border-radius:50%;background:var(--vc);box-sizing:border-box}
+.vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:860px){.vgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.vgrid{grid-template-columns:1fr}}
+.vcard{border:var(--line);border-radius:var(--r-md);background:var(--paper);text-decoration:none;display:grid;grid-template-rows:auto 1fr;overflow:hidden;min-width:0}
+.vcard .thumb{background:var(--vt);border-bottom:var(--line);display:grid;place-items:center;padding:14px}
+.vcard .thumb svg{width:58px;height:58px}
+.vcard .vb{padding:12px 16px;display:grid;gap:4px;align-content:start}
+.vcard b{font-weight:400;font-size:17px;line-height:1.45}
+.vcard span{font-size:13px;color:var(--ink-soft)}
+.vcard:hover .thumb{background:var(--vc)}
 footer{margin-top:48px;display:grid;justify-items:center;gap:8px;color:var(--ink-soft);font-size:13.5px;text-align:center}
 footer svg{width:150px;height:30px}
 @media (prefers-reduced-motion:reduce){details.fold>summary .chev{transition:none}}
@@ -203,6 +236,7 @@ footer svg{width:150px;height:30px}
 
 </head>
 <body>
+<a class="skip" href="#main" id="skiplink">跳到主要內容</a>
 <header class="topbar gut" id="topbar">
   <div class="inner">
     <a class="brand" href="#home">
@@ -224,7 +258,7 @@ footer svg{width:150px;height:30px}
   </div>
 </header>
 
-<main class="gut"><div class="inner">
+<main class="gut" id="main" tabindex="-1"><div class="inner">
 
   <!-- 首頁 -->
   <section class="view" data-view="home" aria-label="首頁">
@@ -299,6 +333,16 @@ footer svg{width:150px;height:30px}
         </g>
       </svg></div>
     </div>
+    <div class="zones">
+      <a class="zone zone-parent" href="#parents">
+        <span class="zart" aria-hidden="true"><svg viewBox="0 0 120 90"><g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M0 78c30-8 90-8 120 0v12H0z" fill="#B9DAA5"/><rect x="26" y="38" width="30" height="40" rx="12" fill="#A8D3E6"/><circle cx="41" cy="24" r="14" fill="#FBE6D4"/><path d="M27 22c0-10 6-16 14-16s14 6 14 16c-5-4-9-6-14-6s-9 2-14 6z" fill="#3E3A39"/><rect x="70" y="52" width="24" height="26" rx="10" fill="#F6D27A"/><circle cx="82" cy="42" r="11" fill="#FBE6D4"/><path d="M71 42c-1-10 4-15 11-15s12 5 11 15l-3-1c0-4-4-7-8-7s-8 3-8 7z" fill="#3E3A39"/><path d="M56 56l14 4" fill="none"/></g><path d="M100 22c-5-3-7-6-7-8.5 0-2 1.6-3.5 3.5-3.5 1.5 0 2.8.8 3.5 2 .7-1.2 2-2 3.5-2 1.9 0 3.5 1.5 3.5 3.5 0 2.5-2 5.5-7 8.5z" fill="#F2A497" stroke="#3E3A39" stroke-width="2.5"/></svg></span>
+        <span class="ztext"><b>家長專區</b><span>親職教育、數位安全與求助資源</span></span>
+      </a>
+      <a class="zone zone-student" href="#students">
+        <span class="zart" aria-hidden="true"><svg viewBox="0 0 120 90"><g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="14" y="10" width="92" height="60" rx="10" fill="#FFFCF6"/><path d="M50 26v28l24-14z" fill="#F2A497"/><path d="M44 70l-6 14M76 70l6 14M32 84h56" fill="none"/></g><g stroke="#3E3A39" stroke-width="2.5"><circle cx="24" cy="20" r="3" fill="#F6D27A"/><circle cx="96" cy="60" r="3" fill="#A8D3E6"/></g></svg></span>
+        <span class="ztext"><b>學生影片專區</b><span>可在課堂直接播放的宣導影片</span></span>
+      </a>
+    </div>
     <div class="entries" id="entries"></div>
     <section class="card help" aria-labelledby="h-help">
       <svg class="phone" viewBox="0 0 120 120" aria-hidden="true">
@@ -325,6 +369,29 @@ footer svg{width:150px;height:30px}
     </section>
   </section>
 
+
+  <!-- 家長專區 -->
+  <section class="view" data-view="parents" aria-labelledby="h-par" hidden>
+    <div class="pagehead">
+      <h1 id="h-par" tabindex="-1">家長專區</h1>
+      <p>提供家長參考之親職教育、數位安全及求助資源。點選類別展開。</p>
+    </div>
+    <div class="folds" id="parFolds"></div>
+    <div class="card helpmini">
+      <b>求助與諮詢專線</b>
+      <span>113 保護專線（24 小時免付費）｜衛生福利部性影像處理中心 02-6605-7373</span>
+      <span>疑似校園性別事件請通知本校學務處或輔導室，遇緊急危險情況請撥打 110。</span>
+    </div>
+  </section>
+
+  <!-- 學生影片專區 -->
+  <section class="view" data-view="students" aria-labelledby="h-stu" hidden>
+    <div class="pagehead">
+      <h1 id="h-stu" tabindex="-1">學生影片專區</h1>
+      <p>依年段整理之性別平等教育宣導影片，可於課堂直接播放。影片均連結至原發布平台。</p>
+    </div>
+    <div class="vgroups" id="vidGroups"></div>
+  </section>
 
   <!-- 關於性平 -->
   <section class="view" data-view="about" aria-labelledby="h-about" hidden>
@@ -522,7 +589,7 @@ const CATS=[
   {id:"c05",no:"05",name:"親師溝通與家長宣導",cc:"var(--coral)"},
   {id:"c06",no:"06",name:"行政法規與處理流程",cc:"var(--mizu)"}
 ];
-const ITEMS=[{"title": "高雄市性別平等教育委員會網站", "url": "https://class.kh.edu.tw/1137/fpage/view/1", "category": "c06", "type": "官方網站", "grade": "全年段", "audience": ["行政", "教師", "家長"], "source": "高雄市性別平等教育委員會", "note": "本市性別平等教育委員會網站，提供本市性別平等教育相關資訊。", "pinned": false}, {"title": "性別平等教育法（112.08.16 修正）", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0080067", "category": "c06", "type": "法規", "grade": "全年段", "audience": ["行政", "教師", "家長"], "source": "全國法規資料庫", "note": "性別平等教育之主要法源，規範學習環境與資源、課程教材與教學，以及校園性別事件之通報、調查與處理。", "pinned": false}, {"title": "教育部性別平等教育全球資訊網", "url": "https://www.gender.edu.tw/", "category": "c01", "type": "官方網站", "grade": "全年段", "audience": ["教師", "行政"], "source": "教育部", "note": "教育部性別平等教育主題網站，內容包含課程教學資源、影片、法規、校園性別事件防治問答及相關表單。", "pinned": false}, {"title": "性別平等教育日專區、課程教學教材與研究專區", "url": "https://www.gender.edu.tw/web/index.php/m1/m1_05_select", "category": "c01", "type": "教案／學習單", "grade": "全年段", "audience": ["教師"], "source": "教育部", "note": "彙整歷年性別平等教育日活動資料及國教署研發之教學宣導素材，可作為課程或班會活動設計參考。", "pinned": true}, {"title": "CIRN：全面性教育暨數位性別暴力防治主題簡報與學習單", "url": "https://cirn.k12ea.gov.tw/web1129/dl_page.aspx?fid=16353", "category": "c01", "type": "簡報", "grade": "全年段", "audience": ["教師", "學生"], "source": "國教署中央輔導團性平分團", "note": "國教署國民教育中央輔導團性別平等教育議題分團設計之課程簡報及學習單（114 年 4 月函轉）。", "pinned": false}, {"title": "衛福部性影像處理中心", "url": "https://siarc.mohw.gov.tw/", "category": "c02", "type": "官方網站", "grade": "高年級", "audience": ["教師", "家長", "行政"], "source": "衛生福利部", "note": "衛生福利部設置之性影像案件單一窗口，受理移除下架申訴及諮詢。諮詢熱線 02-6605-7373（每日 09:00–22:00），線上申訴 24 小時受理。", "pinned": false}, {"title": "兒少性私密影像遭散佈常見樣態（宣導資料）", "url": "https://siarc.mohw.gov.tw/service.php", "category": "c02", "type": "海報／文宣", "grade": "高年級", "audience": ["教師", "學生"], "source": "衛生福利部性影像處理中心", "note": "衛生福利部性影像處理中心之宣導資料，說明兒少私密影像遭散布之常見情形；國教署 114 年 9 月函請學校於集會或課程中運用。", "pinned": true}, {"title": "教育部中小學網路素養與認知網站", "url": "https://eliteracy.edu.tw/", "category": "c02", "type": "影片", "grade": "高年級", "audience": ["教師", "學生"], "source": "教育部", "note": "教育部資訊素養與倫理推廣網站，提供數位性別暴力防治相關之宣導漫畫、影片及教案。", "pinned": false}, {"title": "學齡前兒童性侵害防治教育影片（小黑啤系列）", "url": "https://dep.mohw.gov.tw/DOPS/cp-1311-71974-105.html", "category": "c03", "type": "影片", "grade": "低年級", "audience": ["教師", "學生", "家長"], "source": "衛生福利部保護服務司", "note": "衛福部影音專區，共 4 個動畫單元：小黑啤的身體紅綠燈、猴子蹦蹦交朋友、春春的秘密、我是身體的主人（歌曲）。內容涵蓋身體界線、尊重他人身體自主權，以及遇到不當碰觸時拒絕、離開與求助。原為學齡前兒童製作。", "pinned": false}, {"title": "多元性別友善教學資源手冊（國小版）及課程模組", "url": "https://pse.is/7perdf", "category": "c04", "type": "手冊", "grade": "全年段", "audience": ["教師"], "source": "教育部", "note": "內容包括概念篇、課程與教學篇、校園經驗篇、導師篇及多元性別教學資源篇。115 年性別平等教育日主題為「認識及尊重多元性別」。", "pinned": true}, {"title": "CARE 性影像外流應對準則（影片）", "url": "https://dep.mohw.gov.tw/dops/cp-1311-79335-105.html", "category": "c05", "type": "影片", "grade": "全年段", "audience": ["家長", "教師"], "source": "衛生福利部保護服務司", "note": "衛福部影音專區，共 5 支影片：完整版，以及觀念、報案、蒐證、申訴四篇，說明性影像外流時的處理方式。", "pinned": false}, {"title": "性影像被害人求助指引", "url": "https://www.mohw.gov.tw/dl-85886-56188049-e33d-46f2-9b25-ca19adb85096.html", "category": "c05", "type": "手冊", "grade": "全年段", "audience": ["家長", "行政"], "source": "衛生福利部", "note": "衛生福利部編製，說明性影像被害人於社政、警察、檢察、法院及學校等環節可取得之協助。", "pinned": false}, {"title": "校園性別事件防治準則（113.03.06 修正）", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=h0080069", "category": "c06", "type": "法規", "grade": "全年段", "audience": ["行政", "教師"], "source": "全國法規資料庫", "note": "規範校園安全規劃、申請調查及調查處理程序等事項，為學校訂定校園性別事件防治規定之依據。", "pinned": false}, {"title": "教育部校安通報網", "url": "https://csrc.edu.tw/", "category": "c06", "type": "表單／流程", "grade": "全年段", "audience": ["行政"], "source": "教育部校安中心", "note": "教育部校園安全暨災害防救通報處理中心網站；數位／網路性別暴力已列入通報類別。", "pinned": false}, {"title": "我的身體我做主：身體保護教育片單", "url": "https://www.ptskids.tw/article/bodilyintegrity-66972df316c20", "category": "c03", "type": "影片", "grade": "全年段", "audience": ["教師", "家長"], "source": "公視兒少資源網", "note": "彙整身體保護相關影音資源，包括適用學齡前及低年級的《小黑啤》系列，以及以青少年為對象的網路交友與數位性暴力影片，並附學習單與教案連結。", "pinned": false}, {"title": "莒光國小學務處性別平等教育專區", "url": "https://affairs.kh.edu.tw/714", "category": "c06", "type": "官方網站", "grade": "全年段", "audience": ["教師", "家長", "行政"], "source": "本校學務處", "note": "本校學務處建置之性別平等教育專區，校園性別事件之通報與處理由學務處辦理。", "pinned": true}, {"title": "教育部家庭教育資源網", "url": "https://familyedu.moe.gov.tw/docList.aspx?uid=8856&pid=1033", "category": "c05", "type": "官方網站", "grade": "全年段", "audience": ["家長"], "source": "教育部", "note": "教育部建置之家庭教育資源網站，提供親職教育相關資料。", "pinned": false}, {"title": "未成年懷孕求助網站", "url": "https://257085.sfaa.gov.tw/", "category": "c05", "type": "官方網站", "grade": "高年級", "audience": ["家長", "教師"], "source": "衛生福利部社會及家庭署", "note": "提供未成年懷孕之諮詢及求助資訊。", "pinned": false}, {"title": "PILOT 正向人際及生活能力訓練課程電子書", "url": "https://reurl.cc/kyYbzb", "category": "c05", "type": "手冊", "grade": "全年段", "audience": ["家長", "教師"], "source": "國立臺灣大學兒少暨家庭研究中心", "note": "正向人際互動及生活能力訓練課程之電子書。", "pinned": false}, {"title": "關於青少年自拍性私密影像：家長該知道的事《理解及展開對話》", "url": "https://www.youtube.com/watch?v=8zBkcxJrfek", "category": "c05", "type": "影片", "grade": "高年級", "audience": ["家長"], "source": "YouTube（發布單位未標示）", "note": "以家長為對象，說明如何理解青少年自拍性私密影像議題並與孩子展開對話。", "pinned": false}, {"title": "關於青少年自拍性私密影像：家長該知道的事《協助及支持》", "url": "https://www.youtube.com/watch?v=lSZR_4iIhas", "category": "c05", "type": "影片", "grade": "高年級", "audience": ["家長"], "source": "YouTube（發布單位未標示）", "note": "以家長為對象，說明孩子遇到相關情況時的協助與支持方式。", "pinned": false}, {"title": "性平理念推廣影片：家務分工篇（推廣育兒津貼及家事分工）", "url": "https://www.youtube.com/watch?v=PmYocM4rA-Q", "category": "c05", "type": "影片", "grade": "全年段", "audience": ["家長"], "source": "YouTube（發布單位未標示）", "note": "以家務分工為主題之性別平等理念推廣影片。", "pinned": false}, {"title": "教育部社會情緒學習中長程計畫（114–118 年）", "url": "https://cfte.site.nthu.edu.tw/var/file/275/1275/img/127742991.pdf", "category": "c04", "type": "手冊", "grade": "全年段", "audience": ["教師", "行政"], "source": "教育部", "note": "說明社會情緒學習（SEL）五大核心能力：自我覺察、自我管理、社會覺察、人際關係技巧、負責任的決定，以及學校推動方向。", "pinned": false}, {"title": "康軒 SEL 教學資源網", "url": "https://sel.knsh.com.tw/", "category": "c04", "type": "教案／學習單", "grade": "全年段", "audience": ["教師"], "source": "康軒文教事業（國立臺灣師範大學社會情緒教育與發展研究中心產學合作指導）", "note": "提供國小低、中、高年級 SEL 主題教案、學習單（如情緒卡提問表）、影片及線上閱讀故事。", "pinned": false}, {"title": "翰林 SEL 幸福共好計畫", "url": "https://sel.hle.com.tw/", "category": "c04", "type": "教案／學習單", "grade": "全年段", "audience": ["教師"], "source": "翰林出版事業", "note": "提供 SEL 主題教案、情緒故事短片、情緒表情圖卡及課堂暖身引導等資源。", "pinned": false}, {"title": "國小六年級性別平等教育教案（人際關係與情緒處理）", "url": "https://market.cloud.edu.tw/resources/web/1638008", "category": "c04", "type": "教案／學習單", "grade": "高年級", "audience": ["教師"], "source": "教育部教育大市集（基隆市八堵國小）", "note": "以在人際關係中妥善處理情緒、性別互動相處態度為教學重點之教學簡案；採創用 CC 姓名標示－非商業性－禁止改作授權。", "pinned": false}, {"title": "表達自己的情緒不受性別刻板影響（教案）", "url": "https://drive.google.com/file/d/17YNXscSocDe_Qa_HwxIC__EX6ErXmo57/view", "category": "c04", "type": "教案／學習單", "grade": "高年級", "audience": ["教師"], "source": "關埔國小性別平等教育專區", "note": "以情緒表達與性別刻板印象為主題之教案。", "pinned": false}];
+const ITEMS=[{"title": "高雄市性別平等教育委員會網站", "url": "https://class.kh.edu.tw/1137/fpage/view/1", "category": "c06", "type": "官方網站", "grade": "全年段", "audience": ["行政", "教師", "家長"], "source": "高雄市性別平等教育委員會", "note": "本市性別平等教育委員會網站，提供本市性別平等教育相關資訊。", "pinned": false}, {"title": "性別平等教育法（112.08.16 修正）", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0080067", "category": "c06", "type": "法規", "grade": "全年段", "audience": ["行政", "教師", "家長"], "source": "全國法規資料庫", "note": "性別平等教育之主要法源，規範學習環境與資源、課程教材與教學，以及校園性別事件之通報、調查與處理。", "pinned": false}, {"title": "教育部性別平等教育全球資訊網", "url": "https://www.gender.edu.tw/", "category": "c01", "type": "官方網站", "grade": "全年段", "audience": ["教師", "行政"], "source": "教育部", "note": "教育部性別平等教育主題網站，內容包含課程教學資源、影片、法規、校園性別事件防治問答及相關表單。", "pinned": false}, {"title": "性別平等教育日專區、課程教學教材與研究專區", "url": "https://www.gender.edu.tw/web/index.php/m1/m1_05_select", "category": "c01", "type": "教案／學習單", "grade": "全年段", "audience": ["教師"], "source": "教育部", "note": "彙整歷年性別平等教育日活動資料及國教署研發之教學宣導素材，可作為課程或班會活動設計參考。", "pinned": true}, {"title": "CIRN：全面性教育暨數位性別暴力防治主題簡報與學習單", "url": "https://cirn.k12ea.gov.tw/web1129/dl_page.aspx?fid=16353", "category": "c01", "type": "簡報", "grade": "全年段", "audience": ["教師", "學生"], "source": "國教署中央輔導團性平分團", "note": "國教署國民教育中央輔導團性別平等教育議題分團設計之課程簡報及學習單（114 年 4 月函轉）。", "pinned": false}, {"title": "衛福部性影像處理中心", "url": "https://siarc.mohw.gov.tw/", "category": "c02", "type": "官方網站", "grade": "高年級", "audience": ["教師", "家長", "行政"], "source": "衛生福利部", "note": "衛生福利部設置之性影像案件單一窗口，受理移除下架申訴及諮詢。諮詢熱線 02-6605-7373（每日 09:00–22:00），線上申訴 24 小時受理。", "pinned": false}, {"title": "兒少性私密影像遭散佈常見樣態（宣導資料）", "url": "https://siarc.mohw.gov.tw/service.php", "category": "c02", "type": "海報／文宣", "grade": "高年級", "audience": ["教師", "學生"], "source": "衛生福利部性影像處理中心", "note": "衛生福利部性影像處理中心之宣導資料，說明兒少私密影像遭散布之常見情形；國教署 114 年 9 月函請學校於集會或課程中運用。", "pinned": true}, {"title": "教育部中小學網路素養與認知網站", "url": "https://eliteracy.edu.tw/", "category": "c02", "type": "影片", "grade": "高年級", "audience": ["教師", "學生"], "source": "教育部", "note": "教育部資訊素養與倫理推廣網站，提供數位性別暴力防治相關之宣導漫畫、影片及教案。", "pinned": false}, {"title": "學齡前兒童性侵害防治教育影片（小黑啤系列）", "url": "https://dep.mohw.gov.tw/DOPS/cp-1311-71974-105.html", "category": "c03", "type": "影片", "grade": "低年級", "audience": ["教師", "學生", "家長"], "source": "衛生福利部保護服務司", "note": "衛福部影音專區，共 4 個動畫單元：小黑啤的身體紅綠燈、猴子蹦蹦交朋友、春春的秘密、我是身體的主人（歌曲）。內容涵蓋身體界線、尊重他人身體自主權，以及遇到不當碰觸時拒絕、離開與求助。原為學齡前兒童製作。", "pinned": false}, {"title": "我的身體我作主：身體保護教育片單", "url": "https://www.ptskids.tw/article/bodilyintegrity-66972df316c20", "category": "c03", "type": "影片", "grade": "全年段", "audience": ["教師", "家長"], "source": "公視兒少資源網", "note": "彙整身體保護相關影音資源，包括適用學齡前及低年級的《小黑啤》系列，以及以青少年為對象的網路交友與數位性暴力影片，並附學習單與教案連結。", "pinned": false}, {"title": "2024 低年級熟人性侵、性剝削防治教案", "url": "https://drive.google.com/drive/folders/1qgxT5FpclLRHWhjkdV7-RBLMEO-RJ8yC", "category": "c03", "type": "教案／學習單", "grade": "低年級", "audience": ["教師"], "source": "關埔國小性別平等教育專區", "note": "以熟人性侵害及性剝削防治為主題之低年級教案。", "pinned": false}, {"title": "2024 中高年級熟人性侵、性剝削防治教案", "url": "https://drive.google.com/drive/folders/15JJRjbYSSUV5N0pWvDuXGPgKBG0D3FpD", "category": "c03", "type": "教案／學習單", "grade": "中高年級", "audience": ["教師"], "source": "關埔國小性別平等教育專區", "note": "以熟人性侵害及性剝削防治為主題之中、高年級教案。", "pinned": false}, {"title": "六年級性侵害性騷擾防治教案（一）", "url": "https://drive.google.com/file/d/1rGF8Lt3vPXMu60mzgDUx3_L4cq7h2qwS/view", "category": "c03", "type": "教案／學習單", "grade": "高年級", "audience": ["教師"], "source": "關埔國小性別平等教育專區", "note": "六年級性侵害及性騷擾防治教案，共三份之第一份。", "pinned": false}, {"title": "六年級性侵害性騷擾防治教案（二）", "url": "https://drive.google.com/file/d/1LnErW6P4-5Cil_rGCGLDmLVarCXWjRYX/view", "category": "c03", "type": "教案／學習單", "grade": "高年級", "audience": ["教師"], "source": "關埔國小性別平等教育專區", "note": "六年級性侵害及性騷擾防治教案，共三份之第二份。", "pinned": false}, {"title": "六年級身體自主權－性侵害性騷擾防治教案（三）", "url": "https://drive.google.com/file/d/1dvgPTS-gGKz8FPKraYgR_SQ7yuiWSm0t/view", "category": "c03", "type": "教案／學習單", "grade": "高年級", "audience": ["教師"], "source": "關埔國小性別平等教育專區", "note": "以身體自主權為主軸之六年級性侵害及性騷擾防治教案，共三份之第三份。", "pinned": false}, {"title": "多元性別友善教學資源手冊（國小版）及課程模組", "url": "https://pse.is/7perdf", "category": "c04", "type": "手冊", "grade": "全年段", "audience": ["教師"], "source": "教育部", "note": "內容包括概念篇、課程與教學篇、校園經驗篇、導師篇及多元性別教學資源篇。115 年性別平等教育日主題為「認識及尊重多元性別」。", "pinned": true}, {"title": "CARE 性影像外流應對準則（影片）", "url": "https://dep.mohw.gov.tw/dops/cp-1311-79335-105.html", "category": "c05", "type": "影片", "grade": "全年段", "audience": ["家長", "教師"], "source": "衛生福利部保護服務司", "note": "衛福部影音專區，共 5 支影片：完整版，以及觀念、報案、蒐證、申訴四篇，說明性影像外流時的處理方式。", "pinned": false}, {"title": "性影像被害人求助指引", "url": "https://www.mohw.gov.tw/dl-85886-56188049-e33d-46f2-9b25-ca19adb85096.html", "category": "c05", "type": "手冊", "grade": "全年段", "audience": ["家長", "行政"], "source": "衛生福利部", "note": "衛生福利部編製，說明性影像被害人於社政、警察、檢察、法院及學校等環節可取得之協助。", "pinned": false}, {"title": "校園性別事件防治準則（113.03.06 修正）", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=h0080069", "category": "c06", "type": "法規", "grade": "全年段", "audience": ["行政", "教師"], "source": "全國法規資料庫", "note": "規範校園安全規劃、申請調查及調查處理程序等事項，為學校訂定校園性別事件防治規定之依據。", "pinned": false}, {"title": "教育部校安通報網", "url": "https://csrc.edu.tw/", "category": "c06", "type": "表單／流程", "grade": "全年段", "audience": ["行政"], "source": "教育部校安中心", "note": "教育部校園安全暨災害防救通報處理中心網站；數位／網路性別暴力已列入通報類別。", "pinned": false}, {"title": "莒光國小學務處性別平等教育專區", "url": "https://affairs.kh.edu.tw/714", "category": "c06", "type": "官方網站", "grade": "全年段", "audience": ["教師", "家長", "行政"], "source": "本校學務處", "note": "本校學務處建置之性別平等教育專區，校園性別事件之通報與處理由學務處辦理。", "pinned": true}, {"title": "教育部家庭教育資源網", "url": "https://familyedu.moe.gov.tw/", "category": "c05", "type": "官方網站", "grade": "全年段", "audience": ["家長"], "source": "教育部", "note": "教育部建置之家庭教育資源網站，提供親職教育相關資料。", "pinned": false}, {"title": "未成年懷孕求助網站", "url": "https://257085.sfaa.gov.tw/", "category": "c05", "type": "官方網站", "grade": "高年級", "audience": ["家長", "教師"], "source": "衛生福利部社會及家庭署", "note": "提供未成年懷孕之諮詢及求助資訊。", "pinned": false}, {"title": "PILOT 正向人際及生活能力訓練課程電子書", "url": "https://reurl.cc/kyYbzb", "category": "c05", "type": "手冊", "grade": "全年段", "audience": ["家長", "教師"], "source": "國立臺灣大學兒少暨家庭研究中心", "note": "正向人際互動及生活能力訓練課程之電子書。", "pinned": false}, {"title": "關於青少年自拍性私密影像：家長該知道的事《理解及展開對話》", "url": "https://www.youtube.com/watch?v=8zBkcxJrfek", "category": "c05", "type": "影片", "grade": "高年級", "audience": ["家長"], "source": "YouTube（發布單位未標示）", "note": "以家長為對象，說明如何理解青少年自拍性私密影像議題並與孩子展開對話。", "pinned": false}, {"title": "關於青少年自拍性私密影像：家長該知道的事《協助及支持》", "url": "https://www.youtube.com/watch?v=lSZR_4iIhas", "category": "c05", "type": "影片", "grade": "高年級", "audience": ["家長"], "source": "YouTube（發布單位未標示）", "note": "以家長為對象，說明孩子遇到相關情況時的協助與支持方式。", "pinned": false}, {"title": "性平理念推廣影片：家務分工篇（推廣育兒津貼及家事分工）", "url": "https://www.youtube.com/watch?v=PmYocM4rA-Q", "category": "c05", "type": "影片", "grade": "全年段", "audience": ["家長"], "source": "YouTube（發布單位未標示）", "note": "以家務分工為主題之性別平等理念推廣影片。", "pinned": false}, {"title": "教育部社會情緒學習中長程計畫（114–118 年）", "url": "https://cfte.site.nthu.edu.tw/var/file/275/1275/img/127742991.pdf", "category": "c04", "type": "手冊", "grade": "全年段", "audience": ["教師", "行政"], "source": "教育部", "note": "說明社會情緒學習（SEL）五大核心能力：自我覺察、自我管理、社會覺察、人際關係技巧、負責任的決定，以及學校推動方向。", "pinned": false}, {"title": "康軒 SEL 教學資源網", "url": "https://sel.knsh.com.tw/", "category": "c04", "type": "教案／學習單", "grade": "全年段", "audience": ["教師"], "source": "康軒文教事業（國立臺灣師範大學社會情緒教育與發展研究中心產學合作指導）", "note": "提供國小低、中、高年級 SEL 主題教案、學習單（如情緒卡提問表）、影片及線上閱讀故事。", "pinned": false}, {"title": "翰林 SEL 幸福共好計畫", "url": "https://sel.hle.com.tw/", "category": "c04", "type": "教案／學習單", "grade": "全年段", "audience": ["教師"], "source": "翰林出版事業", "note": "提供 SEL 主題教案、情緒故事短片、情緒表情圖卡及課堂暖身引導等資源。", "pinned": false}, {"title": "國小六年級性別平等教育教案（人際關係與情緒處理）", "url": "https://market.cloud.edu.tw/resources/web/1638008", "category": "c04", "type": "教案／學習單", "grade": "高年級", "audience": ["教師"], "source": "教育部教育大市集（基隆市八堵國小）", "note": "以在人際關係中妥善處理情緒、性別互動相處態度為教學重點之教學簡案；採創用 CC 姓名標示－非商業性－禁止改作授權。", "pinned": false}, {"title": "表達自己的情緒不受性別刻板影響（教案）", "url": "https://drive.google.com/file/d/17YNXscSocDe_Qa_HwxIC__EX6ErXmo57/view", "category": "c04", "type": "教案／學習單", "grade": "高年級", "audience": ["教師"], "source": "關埔國小性別平等教育專區", "note": "以情緒表達與性別刻板印象為主題之教案。", "pinned": false}];
 const SITES=[
   {group:"中央",gc:"var(--coral)",gt:"var(--coral-tint)",items:[
     {name:"性別平等教育全球資訊網－國小資源",org:"教育部",url:"https://www.gender.edu.tw/web/index.php/m5/m5_05_02_index/1?k=&a=&c=",note:"國小階段性別平等教育教學資源。"},
@@ -650,7 +717,7 @@ function fold({icon,color,title,sub,body,open=false}){
 const catById=Object.fromEntries(CATS.map(c=>[c.id,c]));
 
 /* ---------- 路由與選單 ---------- */
-const VIEWS=["home","about","curriculum","themes","materials","resources","sites"];
+const VIEWS=["home","about","curriculum","themes","materials","resources","sites","parents","students"];
 function show(){
   const v=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):"home";
   document.querySelectorAll("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);
@@ -659,7 +726,8 @@ function show(){
   window.scrollTo(0,0);
   if(v==="materials"&&openBand){const d=document.getElementById("band-"+openBand);if(d){d.open=true;setTimeout(()=>d.scrollIntoView({block:"start"}),0)}openBand=null}
 }
-window.addEventListener("hashchange",show);
+window.addEventListener("hashchange",()=>{show();const h=document.querySelector(`[data-view]:not([hidden]) h1`);if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true})}});
+$("skiplink").addEventListener("click",e=>{e.preventDefault();const h=document.querySelector(`[data-view]:not([hidden]) h1`)||$("main");h.setAttribute("tabindex","-1");h.focus()});
 $("menubtn").onclick=()=>{const o=$("topbar").classList.toggle("open");$("menubtn").setAttribute("aria-expanded",String(o))};
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("topbar").classList.contains("open")){$("topbar").classList.remove("open");$("menubtn").setAttribute("aria-expanded","false");$("menubtn").focus()}});
 
@@ -734,7 +802,46 @@ function renderMat(){
       el("ul",{class:"mlist"},g.items.map(([t,u,k])=>el("li",{},el("span",{class:"chip"},k),el("a",{href:u,target:"_blank",rel:"noopener"},t," ↗"))))))});
     f.id="band-"+b.id;return f;}));
 }
-renderGrades();renderPanel();renderRes();renderMat();show();
+
+/* ---------- 家長專區 ---------- */
+function renderParents(){
+  const c05=ITEMS.filter(i=>i.category==="c05");
+  const other=ITEMS.filter(i=>i.category!=="c05"&&i.audience.includes("家長"));
+  $("parFolds").replaceChildren(
+    fold({icon:ICONS.c05,color:"var(--coral)",title:"親職與家庭教育",sub:`${c05.length} 筆`,open:true,body:c05.map(resItem)}),
+    fold({icon:ICONS.c02,color:"var(--mizu)",title:"其他適合家長參考的資源",sub:`${other.length} 筆`,body:other.map(resItem)}));
+}
+/* ---------- 學生影片專區 ---------- */
+const VIDEOS=[
+  {g:"低年級",c:"var(--wakatake)",t:"var(--wakatake-tint)",items:[
+    {n:"學齡前兒童性侵害防治教育影片（小黑啤系列）",o:"衛生福利部保護服務司",d:"身體紅綠燈、拒絕不當碰觸與求助，共 4 個單元",u:"https://dep.mohw.gov.tw/DOPS/cp-1311-71974-105.html"},
+    {n:"泡泡王的秘密：有人觸摸我的身體或侵犯我的時候怎麼辦？",o:"桃園市性平輔導團",d:"身體自主與求助",u:"https://www.youtube.com/watch?v=B5aPyPpjrf8"},
+    {n:"大鯨魚瑪莉蓮",o:"繪本影片",d:"身體意象與自我接納",u:"https://www.youtube.com/watch?v=KVFR556RS-8"}]},
+  {g:"中年級",c:"var(--mizu)",t:"var(--mizu-tint)",items:[
+    {n:"做自己不分性別",o:"桃園市性平輔導團",d:"性別刻板印象",u:"https://www.youtube.com/watch?v=yL3P3RSW4xA"},
+    {n:"小葉教給我們的重要事",o:"桃園市性平輔導團",d:"性別平等觀念",u:"https://www.youtube.com/watch?v=VP7F527eoC8"}]},
+  {g:"高年級",c:"var(--yamabuki)",t:"var(--yamabuki-tint)",items:[
+    {n:"從「經」開始、健康喜悅",o:"經期保健影片",d:"青春期與月經教育",u:"https://youtu.be/D6st6JviYZQ"},
+    {n:"中小學網路素養與認知網站",o:"教育部",d:"數位性別暴力防治、Deepfake 宣導影片與漫畫",u:"https://eliteracy.edu.tw/"}]},
+  {g:"影片片單",c:"var(--coral)",t:"var(--coral-tint)",items:[
+    {n:"我的身體我作主：身體保護教育片單",o:"公視兒少資源網",d:"彙整適合各年段的身體保護影片",u:"https://www.ptskids.tw/article/bodilyintegrity-66972df316c20"}]}
+];
+const PLAY=`<svg viewBox="0 0 58 58" aria-hidden="true"><g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"><circle cx="29" cy="29" r="25" fill="#FFFCF6"/><path d="M23 18v22l18-11z" fill="#F2A497"/></g></svg>`;
+function renderVideos(){
+  $("vidGroups").replaceChildren(...VIDEOS.map(g=>el("div",{class:"vgroup",style:`--vc:${g.c};--vt:${g.t}`},
+    el("h2",{},g.g),
+    el("div",{class:"vgrid"},g.items.map(v=>el("a",{class:"vcard",href:v.u,target:"_blank",rel:"noopener"},
+      el("span",{class:"thumb",html:PLAY}),
+      el("span",{class:"vb"},el("b",{},v.n),el("span",{},`${v.o}｜${v.d}`))))))));
+}
+/* ---------- 外部連結提示 ---------- */
+function markExternal(root=document){
+  root.querySelectorAll('a[target="_blank"]').forEach(a=>{
+    if(!a.querySelector(".sr-only"))a.append(el("span",{class:"sr-only"},"（另開新視窗）"));
+  });
+}
+new MutationObserver(()=>markExternal()).observe(document.body,{childList:true,subtree:true});
+renderGrades();renderPanel();renderRes();renderMat();renderParents();renderVideos();markExternal();show();
 </script>
 
 </body>
